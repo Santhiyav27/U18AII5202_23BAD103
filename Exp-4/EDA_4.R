@@ -3,7 +3,7 @@ print("Santhiya Varma S M - 23BAD103")
 library(ggplot2)
 library(dplyr)
 
-setwd("C:/Users/student/Downloads")
+setwd("C:/Users/santh/Downloads")
 traffic_data <- read.csv("traffic_accidents.csv")
 
 plot_data <- traffic_data %>%
@@ -14,6 +14,8 @@ plot_data$Severity <- factor(
   plot_data$Severity,
   levels = c("Minor", "Major", "Fatal")
 )
+
+set.seed(150)
 
 ggplot(plot_data, aes(x = Location, y = Severity)) +
   geom_jitter(
@@ -35,23 +37,21 @@ ggplot(plot_data, aes(x = Location, y = Severity)) +
   ) +
   scale_size_continuous(range = c(5, 15)) +
   labs(
-    title = "Traffic Accident Analysis",
+    title = "Traffic Accident Analysis: High-Risk Zones",
     subtitle = "Visualizing Severity, Frequency, and Accident Type",
     x = "Location Zone",
     y = "Accident Severity",
-    size = "Accident\nFrequency",
-    shape = "Accident\nType",
-    color = "Severity\nLevel"
+    size = "Accident Frequency",
+    shape = "Accident Type",
+    color = "Severity Level"
   ) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold", size = 16),
-    plot.subtitle = element_text(size = 12),
     axis.text = element_text(size = 12),
-    axis.title = element_text(size = 13),
     legend.position = "right",
-    legend.key.size = unit(0.2, "cm"),
+    legend.key.size = unit(0.4, "cm"),
     legend.text = element_text(size = 8),
-    legend.title = element_text(size = 10, face = "bold"),
-    legend.spacing.y = unit(0.15, "cm")
+    legend.title = element_text(size = 9, face = "bold"),
+    legend.spacing.y = unit(0.2, "cm")
   )
