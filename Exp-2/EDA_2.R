@@ -7,20 +7,20 @@ library(lubridate)
 setwd("C:/Users/santh/Downloads")
 ecommerce_data <- read.csv("ecommerce_transactions.csv")
 
-ggplot(df, aes(x = Transaction_Amount)) +
+ggplot(ecommerce_data, aes(x = Transaction_Amount)) +
   geom_histogram(bins = 20, fill = "lightgreen", color = "darkgreen") +
   labs(title = "Histogram of Transaction Amounts",
        x = "Transaction Amount",
        y = "Frequency") +
   theme_minimal()
 
-ggplot(df, aes(y = Transaction_Amount)) +
+ggplot(ecommerce_data, aes(y = Transaction_Amount)) +
   geom_boxplot(fill = "orange", color = "black") +
   labs(title = "Boxplot of Transaction Amounts",
        y = "Transaction Amount") +
   theme_minimal()
 
-heatmap_data <- df %>%
+heatmap_data <- ecommerce_data %>%
   mutate(Month = month(Transaction_Date, label = TRUE, abbr = FALSE)) %>%
   group_by(Product_Category, Month) %>%
   summarise(Total_Sales = sum(Transaction_Amount), .groups = 'drop')
